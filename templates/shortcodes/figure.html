@@ -1,0 +1,19 @@
+{%- set src_base = "https://cdn.kiero.dev/" ~ src -%}
+<figure class="my-8">
+  <picture>
+    <source srcset="{{ src_base }}.webp" type="image/webp">
+    <source srcset="{{ src_base }}.jpg" type="image/jpeg">
+    <img
+      src="{{ src_base }}.jpg"
+      alt="{{ alt | default(value='') }}"
+      {% if width is defined %}width="{{ width }}"{% endif %}
+      {% if height is defined %}height="{{ height }}"{% endif %}
+      loading="lazy"
+      decoding="async"
+      class="rounded-md w-full"
+    >
+  </picture>
+  {% if caption is defined %}
+  <figcaption class="mt-2 text-center text-sm text-zinc-500 dark:text-zinc-400">{{ caption }}</figcaption>
+  {% endif %}
+</figure>

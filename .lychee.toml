@@ -1,0 +1,10 @@
+timeout = 20
+max_retries = 3
+retry_wait_time = 2
+
+exclude = [
+  "^https?://localhost",
+  "^https?://127\\.0\\.0\\.1",
+]
+
+exclude_path = ["public"]

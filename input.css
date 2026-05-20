@@ -1,0 +1,271 @@
+@import "tailwindcss";
+@source "./templates/**/*.html";
+@source "./static/js/github.js";
+
+/* Class-based dark mode — JS toggles .dark on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Fonts ──────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist[wght].woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono[wght].woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Warm palette — replaces Tailwind's cool zinc + orange defaults */
+  --color-white:      #f5f3ec;
+  --color-zinc-50:    #f5f3ec;
+  --color-zinc-100:   #e8e5da;
+  --color-zinc-200:   #d5d1c5;
+  --color-zinc-300:   #bbb7ac;
+  --color-zinc-400:   #8c8880;
+  --color-zinc-500:   #6e6a62;
+  --color-zinc-600:   #524e46;
+  --color-zinc-700:   #3a3733;
+  --color-zinc-800:   #252320;
+  --color-zinc-900:   #1e1c19;
+  --color-zinc-950:   #1b1a18;
+  --color-orange-400: #f07040;
+  --color-orange-500: #ea591a;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    background-color: #f0eee6;
+    color: #3a3733;
+  }
+  html.dark {
+    background-color: #1b1a18;
+    color: #fafafa;
+  }
+  ::selection {
+    background-color: #e8c9a8;
+  }
+  html.dark ::selection {
+    background-color: #3d1a08;
+  }
+}
+
+/* ─── Prose ──────────────────────────────────────────────────────────────── */
+/*
+ * These styles apply to Markdown-rendered content inside .prose.
+ * Tailwind utilities can't be added to elements Zola generates, so we
+ * define them here. Colors are chosen from the zinc + orange palette.
+ */
+
+/* Theme toggle icon visibility */
+html:not(.dark) .icon-moon { display: none; }
+html.dark        .icon-sun  { display: none; }
+
+@layer components {
+  .prose {
+    font-size: 0.9625rem;
+    line-height: 1.75;
+    color: #3a3733;
+    max-width: 68ch;
+  }
+  html.dark .prose {
+    color: #c0b8a8;
+  }
+
+  .prose p             { margin: 0 0 1.25rem; }
+  .prose p:last-child  { margin-bottom: 0; }
+
+  .prose h2 {
+    font-size: 1.3rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: #3a3733;
+    margin: 2.5rem 0 0.875rem;
+  }
+  html.dark .prose h2 { color: #fafafa; }
+
+  .prose h3 {
+    font-size: 1.1rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: #3a3733;
+    margin: 2rem 0 0.75rem;
+  }
+  html.dark .prose h3 { color: #fafafa; }
+
+  .prose h4 {
+    font-size: 0.95rem;
+    font-weight: 650;
+    color: #3a3733;
+    margin: 1.75rem 0 0.5rem;
+  }
+  html.dark .prose h4 { color: #fafafa; }
+
+  .prose ul, .prose ol { padding-left: 1.4rem; margin: 0 0 1.25rem; }
+  .prose li { margin: 0.3rem 0; }
+
+  .prose blockquote {
+    border-left: 3px solid #ea591a;
+    margin: 1.75rem 0;
+    padding: 0.375rem 0 0.375rem 1.25rem;
+    color: #6e6a62;
+    font-style: italic;
+  }
+  html.dark .prose blockquote {
+    border-color: #f07040;
+    color: #8c8880;
+  }
+
+  .prose a {
+    color: #ea591a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  html.dark .prose a  { color: #f07040; }
+  .prose a:hover      { color: #c8480e; }
+  html.dark .prose a:hover { color: #f5a070; }
+
+  .prose code {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 0.85em;
+    background-color: #e8e5da;
+    padding: 0.15em 0.35em;
+    border-radius: 4px;
+    border: 1px solid #d5d1c5;
+  }
+  html.dark .prose code {
+    background-color: #252320;
+    border-color: #393732;
+  }
+
+  .prose pre {
+    background-color: #1b1a18;   /* dark for both modes */
+    border: 1px solid #252320;
+    border-radius: 4px;
+    padding: 1.25rem 1.375rem;
+    overflow-x: auto;
+    margin: 0 0 1.5rem;
+    line-height: 1.55;
+  }
+  .prose pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.85rem;
+    color: inherit;
+  }
+  /* html.dark .prose code has higher specificity than .prose pre code,
+     so we need an explicit override to prevent dark-mode inline-code styles
+     from leaking into fenced code blocks. */
+  html.dark .prose pre code {
+    background: none;
+    border: none;
+  }
+
+  .prose img {
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    max-width: 100%;
+  }
+
+  .prose hr {
+    border: none;
+    border-top: 1px solid #d5d1c5;
+    margin: 2.5rem 0;
+  }
+  html.dark .prose hr { border-color: #2a2824; }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 0 0 1.5rem;
+  }
+  .prose th, .prose td {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #d5d1c5;
+  }
+  html.dark .prose th,
+  html.dark .prose td { border-color: #2a2824; }
+  .prose th {
+    font-weight: 650;
+    color: #6e6a62;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  html.dark .prose th { color: #8c8880; }
+}
+
+/* ─── GitHub Language Bar ────────────────────────────────────────────────── */
+
+@layer components {
+  .gh-star-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: #e8e5da;
+    border: 1px solid #d5d1c5;
+    border-radius: 4px;
+    padding: 0 5px;
+    line-height: 1.6;
+    color: #524e46;
+  }
+  html.dark .gh-star-badge {
+    background: #252320;
+    border-color: #393732;
+    color: #8c8880;
+  }
+}
+
+/* ─── Code block copy button ─────────────────────────────────────────────── */
+
+@layer components {
+  .code-block-wrapper {
+    position: relative;
+    margin: 0 0 1.5rem;
+  }
+  .copy-code-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    border: 1px solid #393732;
+    background: #1b1a18;
+    color: #6e6a62;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+  }
+  .code-block-wrapper:hover .copy-code-button {
+    opacity: 1;
+  }
+  .copy-code-button:hover {
+    background-color: #252320;
+    border-color: #524e46;
+    color: #c0b8a8;
+  }
+  .copy-code-button.is-copied {
+    color: #4ade80;
+    opacity: 1;
+  }
+}

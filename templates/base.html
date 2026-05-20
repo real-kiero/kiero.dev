@@ -1,0 +1,102 @@
+{% import "macros/icons.html" as icons %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
+  <meta name="author" content="{{ config.extra.author }}">
+
+  {# Inline theme bootstrap — must run before CSS to prevent flash of wrong theme #}
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="{{ get_url(path='css/main.css') | safe }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ config.title }} — Feed" href="{{ get_url(path='atom.xml') | safe }}">
+
+  {% block head %}{% endblock head %}
+</head>
+<body class="text-zinc-900 dark:text-zinc-100 font-sans antialiased">
+
+  <header class="sticky top-0 z-50 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-sm">
+    <div class="max-w-3xl mx-auto px-6 flex items-center justify-between h-14">
+
+      <a href="{{ get_url(path='/') | safe }}"
+         class="text-[1.05rem] font-bold tracking-tight text-zinc-900 dark:text-zinc-100 hover:text-orange-500 dark:hover:text-orange-400">
+        kiero
+      </a>
+
+      <nav class="flex items-center gap-6" aria-label="Site navigation">
+<a href="{{ get_url(path='/projects') | safe }}"
+           class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100">projects</a>
+        <a href="{{ get_url(path='/blog') | safe }}"
+           class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100">blog</a>
+
+        <button id="theme-toggle"
+                class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-pointer flex items-center p-1 rounded-sm"
+                aria-label="Toggle colour theme">
+          {# Sun — shown in dark mode to switch to light #}
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"   x2="5.64"  y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78"  x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+          {# Moon — shown in light mode to switch to dark #}
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="py-14" id="main">
+    <div class="max-w-3xl mx-auto px-6">
+      {% block content %}{% endblock content %}
+    </div>
+  </main>
+
+  <footer class="border-t border-zinc-200 dark:border-zinc-800 py-7">
+    <div class="max-w-3xl mx-auto px-6 flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400">
+      <span>© {{ now() | date(format="%Y") }} Kiero</span>
+      <div class="flex gap-4">
+        <a href="https://github.com/real-kiero" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 hover:text-zinc-900 dark:hover:text-zinc-100">
+          {{ icons::github(size="15") }}
+          <span>github</span>
+        </a>
+        <a href="{{ get_url(path='atom.xml') | safe }}"
+           class="inline-flex items-center gap-1.5 hover:text-zinc-900 dark:hover:text-zinc-100">
+          {{ icons::rss(size="15") }}
+          <span>feed</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ get_url(path='js/bg.js') | safe }}"></script>
+  <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
+  <script src="{{ get_url(path='js/github.js') | safe }}"></script>
+  <script src="{{ get_url(path='js/copy-code.js') | safe }}"></script>
+  {% block scripts %}{% endblock scripts %}
+</body>
+</html>

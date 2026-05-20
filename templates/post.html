@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — {{ config.title }}{% endblock title %}
+{% block description %}
+  {%- if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif -%}
+{% endblock description %}
+
+{% block content %}
+<article>
+  <header class="mb-10">
+    <h1 class="text-4xl font-bold tracking-tight mb-3">{{ page.title }}</h1>
+    <div class="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+      <time datetime="{{ page.date | date(format='%Y-%m-%d') }}">
+        {{ page.date | date(format="%B %d, %Y") }}
+      </time>
+      {% if page.reading_time %}
+      <span class="opacity-40">·</span>
+      <span>{{ page.reading_time }} min read</span>
+      {% endif %}
+    </div>
+  </header>
+  <div class="prose">
+    {{ page.content | safe }}
+  </div>
+</article>
+{% endblock content %}

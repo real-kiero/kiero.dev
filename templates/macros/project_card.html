@@ -1,0 +1,28 @@
+{% import "macros/icons.html" as icons %}
+
+{#
+  Renders a project card tile.
+  permalink  — page URL
+  title      — project title
+  description — short description (optional)
+  repo       — full GitHub repo URL (optional); triggers language bar + GitHub API
+  url        — live site URL (optional); shows external-link indicator
+#}
+{% macro card(permalink, title, description="", repo="", url="") %}
+<a href="{{ permalink | safe }}"
+   class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded p-5 flex flex-col gap-2 hover:border-orange-500 dark:hover:border-orange-400 no-underline"
+   {% if repo %}data-github-repo="{{ repo | safe }}"{% endif %}>
+  <div class="flex items-center justify-between gap-2">
+    <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ title }}</span>
+    {% if url %}
+    <span class="text-zinc-400 dark:text-zinc-600 shrink-0">{{ icons::external_link(size="13") }}</span>
+    {% endif %}
+  </div>
+  {% if description %}
+  <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed flex-1 m-0">{{ description }}</p>
+  {% endif %}
+  {% if repo %}
+  <div class="gh-lang-bar mt-1"></div>
+  {% endif %}
+</a>
+{% endmacro %}

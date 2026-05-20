@@ -1,0 +1,16 @@
+# Zola build output
+public/
+
+# Tailwind generated output
+static/css/main.css
+
+# Windows metadata
+*.Zone.Identifier
+
+# Claude Code local settings
+.claude/
+
+# Environment files
+.env
+.env.*
+!.env.example

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "macros/project_card.html" as project_card %}
+
+{% block title %}Projects — {{ config.title }}{% endblock title %}
+{% block description %}Things I've built, shipped, or am actively working on.{% endblock description %}
+
+{% block content %}
+<header class="mb-10">
+  <h1 class="text-4xl font-bold tracking-tight mb-2">Projects</h1>
+  <p class="text-zinc-500 dark:text-zinc-400 m-0">Things I've built, shipped, or am actively working on.</p>
+</header>
+
+{% if section.pages %}
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  {% for project in section.pages %}
+  {{ project_card::card(
+    permalink=project.permalink,
+    title=project.title,
+    description=project.description | default(value=""),
+    repo=project.extra.repo | default(value=""),
+    url=project.extra.url | default(value="")
+  ) }}
+  {% endfor %}
+</div>
+{% else %}
+<p class="text-zinc-500 dark:text-zinc-400">Projects coming soon.</p>
+{% endif %}
+{% endblock content %}
