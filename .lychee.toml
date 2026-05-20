@@ -5,6 +5,8 @@ retry_wait_time = 2
 exclude = [
   "^https?://localhost",
   "^https?://127\\.0\\.0\\.1",
+  "^https?://(www\\.)?reddit\\.com",
+  "^file://",
 ]
 
 exclude_path = ["public"]
