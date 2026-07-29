@@ -5,7 +5,7 @@
 name = "kiero.dev"
 status = "live"
 blurb = "This site. Static, self-hosted, privacy-respecting."
-stack = ["Zola", "Docker", "Caddy", "Tailwind"]
+stack = ["Zola", "Docker", "Caddy"]
 repo = "https://github.com/real-kiero/kiero.dev"
 
 [[project]]
