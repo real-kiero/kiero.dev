@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @source "./templates/**/*.html";
-@source "./static/js/github.js";
 
 /* Class-based dark mode — JS toggles .dark on <html> */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -210,26 +209,6 @@ html.dark        .icon-sun  { display: none; }
     letter-spacing: 0.04em;
   }
   html.dark .prose th { color: #8c8880; }
-}
-
-/* ─── GitHub Language Bar ────────────────────────────────────────────────── */
-
-@layer components {
-  .gh-star-badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    background: #e8e5da;
-    border: 1px solid #d5d1c5;
-    border-radius: 4px;
-    padding: 0 5px;
-    line-height: 1.6;
-    color: #524e46;
-  }
-  html.dark .gh-star-badge {
-    background: #252320;
-    border-color: #393732;
-    color: #8c8880;
-  }
 }
 
 /* ─── Code block copy button ─────────────────────────────────────────────── */
