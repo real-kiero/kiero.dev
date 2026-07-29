@@ -1,0 +1,16 @@
+# repo is required: the whole card is a link to it. Status, blurb and
+# stack are optional.
+
+[[project]]
+name = "kiero.dev"
+status = "live"
+blurb = "This site. Static, self-hosted, privacy-respecting."
+stack = ["Zola", "Docker", "Caddy", "Tailwind"]
+repo = "https://github.com/real-kiero/kiero.dev"
+
+[[project]]
+name = "Startpage"
+status = "archived"
+blurb = "A custom browser startpage, built to replace the default new-tab page."
+stack = ["HTML", "CSS"]
+repo = "https://github.com/real-kiero/startpage"

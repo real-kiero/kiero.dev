@@ -2,11 +2,11 @@
 {% import "macros/icons.html" as icons %}
 {% import "macros/project_card.html" as project_card %}
 
-{% block title %}{{ config.title }} — {{ config.extra.tagline }}{% endblock title %}
+{% block title %}{{ config.title }} // {{ config.extra.tagline }}{% endblock title %}
 
 {% block content %}
 
-{# ── Hero ─────────────────────────────────────────────────────────────────── #}
+<!-- Hero -->
 <section class="mb-12">
   <h1 class="text-4xl font-bold tracking-tight mb-2">Hey, I'm Kieran.</h1>
   <p class="text-lg text-zinc-500 dark:text-zinc-400 mb-7">{{ config.extra.tagline }}</p>
@@ -21,7 +21,7 @@
 
 </section>
 
-{# ── Recent writing ───────────────────────────────────────────────────────── #}
+<!-- Recent writing -->
 {% set blog = get_section(path="blog/_index.md") %}
 {% if blog.pages %}
 <section class="mt-14">
@@ -48,9 +48,9 @@
 </section>
 {% endif %}
 
-{# ── Selected projects ────────────────────────────────────────────────────── #}
-{% set projects = get_section(path="projects/_index.md") %}
-{% if projects.pages %}
+<!-- Selected projects -->
+{% set projects = load_data(path="data/projects.toml") %}
+{% if projects.project %}
 <section class="mt-14">
   <div class="flex items-center justify-between mb-5 pb-2.5 border-b border-zinc-200 dark:border-zinc-800">
     <span class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">selected projects</span>
@@ -60,14 +60,8 @@
     </a>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    {% for project in projects.pages | slice(end=2) %}
-    {{ project_card::card(
-      permalink=project.permalink,
-      title=project.title,
-      description=project.description | default(value=""),
-      repo=project.extra.repo | default(value=""),
-      url=project.extra.url | default(value="")
-    ) }}
+    {% for project in projects.project | slice(end=2) %}
+    {{ project_card::card(project=project) }}
     {% endfor %}
   </div>
 </section>

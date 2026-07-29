@@ -1,6 +1,6 @@
 +++
 title = "Projects"
 template = "projects_list.html"
-page_template = "project.html"
-sort_by = "weight"
 +++
+
+# Section shell only. Zola needs a content file to own the /projects route;
