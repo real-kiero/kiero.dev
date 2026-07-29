@@ -1,11 +1,7 @@
 +++
-title = "kiero.dev"
+title = "This Blogging System"
+date = 2026-07-29
 description = "This site. Static, self-hosted, privacy-respecting."
-weight = 1
-
-[extra]
-repo = "https://github.com/real-kiero/kiero.dev"
-url = "https://kiero.dev"
 +++
 
 {% callout() %}
