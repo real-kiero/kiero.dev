@@ -4,17 +4,13 @@ date = 2026-07-29
 description = "This site. Static, self-hosted, privacy-respecting."
 +++
 
-{% callout() %}
-TL;DR: Solution design write up that covers the decision process and deployment of my static site built with Zola and Tailwind containerised with a four-stage Docker build, served by Caddy, and deployed automatically via Watchtower. Images are stored and optimised via Cloudflare R2. Hosted on Scaleway for renewable energy and right-sized cost. Analytics are self-hosted with Umami so visitor data never leaves the server.
-{% end %}
-
 This site is a personal portfolio and blog. I wanted it to be private, automatic, secure, and modern, and I made deliberate choices rather than just reaching for the obvious stack. What follows is a breakdown of those choices and the thinking behind each one.
 
 ## Architecture
 
 The architecture was designed upfront rather than assembled on the fly. Everything deploys from GitHub through a CI/CD pipeline, and the diagram below reflects the full plan as it was drawn before any of it was built.
 
-{{ figure(src="Infrastructure", alt="Architecture diagram showing the CI pipeline and runtime stack" caption="Architecture diagram showing the CI pipeline and runtime stack") }}
+{{ figure(src="Infrastructure", alt="Architecture diagram showing the CI pipeline and runtime stack" caption="Architecture diagram showing the CI pipeline and runtime stack" breakout=true) }}
 
 ## Portfolio Layer
 
@@ -82,10 +78,6 @@ Privacy runs through the design of this site, which is why [Umami](https://umami
 ## Privacy
 
 The same thinking influenced every vendor decision. Providers that required government ID were excluded outright, because trusting that level of sensitive data with a third party is a risk I'm not willing to accept, particularly given recent reporting on AI systems discovering and weaponising zero-day vulnerabilities at scale.
-
-{% callout() %}
-The simplest protection against a data breach is making sure the data doesn't exist to be taken. These are minor mitigations, but they were all deliberate.
-{% end %}
 
 Payment exposure was factored in too, with virtual cards that can be frozen immediately used where possible, and PayPal providing an additional layer of separation for payment processing.
 
