@@ -1,23 +1,12 @@
 # syntax=docker/dockerfile:1
 
-# ── Stage 1: build CSS ────────────────────────────────────────────────────────
-FROM node:22-alpine AS css
-WORKDIR /build
-COPY package.json .
-RUN npm install
-COPY input.css .
-COPY templates ./templates
-COPY static ./static
-RUN mkdir -p static/css && npx tailwindcss -i input.css -o static/css/main.css --minify
-
-# ── Stage 2: build site ───────────────────────────────────────────────────────
+# Stage 1: build site 
 FROM ghcr.io/getzola/zola:v0.22.1 AS zola
 WORKDIR /site
 COPY . .
-COPY --from=css /build/static/css/main.css static/css/main.css
 RUN ["zola", "build"]
 
-# ── Stage 3: pre-compress ────────────────────────────────────────────────────
+# Stage 2: pre-compress 
 FROM alpine:3.19 AS compressor
 WORKDIR /site
 COPY --from=zola /site/public public
@@ -28,7 +17,7 @@ RUN find ./public -type f -size +1400c \
     -exec gzip --best -k {} \+ \
     -exec zstd --ultra -k {} \+
 
-# ── Stage 4: serve ───────────────────────────────────────────────────────────
+# Stage 3: serve
 FROM caddy:2-alpine
 COPY --from=compressor /site/public /srv
 COPY Caddyfile /etc/caddy/Caddyfile

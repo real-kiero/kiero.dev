@@ -1,16 +1,9 @@
-.PHONY: dev build css
+.PHONY: dev build
 
-# Run Tailwind watch and Zola dev server together.
-# Ctrl-C stops both.
 dev:
-	npx tailwindcss -i input.css -o static/css/main.css --watch &
-	trap 'kill %1' EXIT; zola serve
+	zola serve
 
-# Production build: minified CSS then Zola.
+# Production build.
 build:
-	npx tailwindcss -i input.css -o static/css/main.css --minify
 	zola build
 
-# Regenerate CSS only (useful after editing input.css).
-css:
-	npx tailwindcss -i input.css -o static/css/main.css

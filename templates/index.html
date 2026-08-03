@@ -1,76 +1,58 @@
 {% extends "base.html" %}
-{% import "macros/icons.html" as icons %}
 {% import "macros/project_card.html" as project_card %}
 
-{% block title %}{{ config.title }} — {{ config.extra.tagline }}{% endblock title %}
+{% block title %}{{ config.title }}{% endblock title %}
 
 {% block content %}
 
-{# ── Hero ─────────────────────────────────────────────────────────────────── #}
-<section class="mb-12">
-  <h1 class="text-4xl font-bold tracking-tight mb-2">Hey, I'm Kieran.</h1>
-  <p class="text-lg text-zinc-500 dark:text-zinc-400 mb-7">{{ config.extra.tagline }}</p>
-  <p class="text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed mb-4">
-    I'm a developer based in Glasgow, working in FCA-regulated financial services.
-    Most of my professional work is Django and Python.
-  </p>
-  
-  <p class="mt-5 text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
-    Right now I'm learning Mandarin and may be addicted to Diet Coke. 
-  </p>
+<div class="hero">
+<h1>Hey, I'm Kieran.</h1>
 
-</section>
+<nav class="hero-links" aria-label="Elsewhere">
+  <a class="icon-link" href="{{ config.extra.github | safe }}" rel="noopener noreferrer" aria-label="GitHub">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+    </svg>
+  </a>
+  <a class="icon-link" href="{{ get_url(path='atom.xml') | safe }}" aria-label="RSS feed">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 11a9 9 0 0 1 9 9"/>
+      <path d="M4 4a16 16 0 0 1 16 16"/>
+      <circle cx="5" cy="19" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  </a>
+</nav>
+</div>
 
-{# ── Recent writing ───────────────────────────────────────────────────────── #}
+<p> I'm a software developer based in Glasgow, working on FCA-regulated financial systems.</p> 
+
+<p>Most of my professional work focuses on backend application development, data modelling, workflow automation, and document generation in Python and Django.</p>
+
 {% set blog = get_section(path="blog/_index.md") %}
 {% if blog.pages %}
-<section class="mt-14">
-  <div class="flex items-center justify-between mb-5 pb-2.5 border-b border-zinc-200 dark:border-zinc-800">
-    <span class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">recent writing</span>
-    <a href="{{ get_url(path='/blog') | safe }}"
-       class="text-sm text-orange-500 dark:text-orange-400 inline-flex items-center gap-1 hover:underline">
-      all posts {{ icons::arrow_right() }}
-    </a>
-  </div>
-  <ul class="m-0 p-0 list-none">
-    {% for post in blog.pages | slice(end=4) %}
-    <li class="flex justify-between items-baseline gap-4 py-3 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0">
-      <a href="{{ post.permalink | safe }}"
-         class="text-sm text-zinc-900 dark:text-zinc-100 hover:text-orange-500 dark:hover:text-orange-400">
-        {{ post.title }}
-      </a>
-      <span class="text-xs text-zinc-500 dark:text-zinc-400 whitespace-nowrap tabular-nums shrink-0">
-        {{ post.date | date(format="%b %d, %Y") }}
-      </span>
-    </li>
-    {% endfor %}
-  </ul>
-</section>
+<hr>
+<h2>Writing</h2>
+<div class="entries entries-home">
+  {% for post in blog.pages | slice(end=6) %}
+  <a class="entry" href="{{ post.permalink | safe }}">
+    <span><span class="entry-title">{{ post.title }}</span>{% if post.reading_time %} <span class="entry-read">{{ post.reading_time }} min</span>{% endif %}</span>
+    <span class="entry-date">{{ post.date | date(format="%B %d, %Y") }}</span>
+  </a>
+  {% endfor %}
+</div>
+<p class="more"><a href="{{ get_url(path='/blog') | safe }}">all posts</a></p>
 {% endif %}
 
-{# ── Selected projects ────────────────────────────────────────────────────── #}
-{% set projects = get_section(path="projects/_index.md") %}
-{% if projects.pages %}
-<section class="mt-14">
-  <div class="flex items-center justify-between mb-5 pb-2.5 border-b border-zinc-200 dark:border-zinc-800">
-    <span class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">selected projects</span>
-    <a href="{{ get_url(path='/projects') | safe }}"
-       class="text-sm text-orange-500 dark:text-orange-400 inline-flex items-center gap-1 hover:underline">
-      all projects {{ icons::arrow_right() }}
-    </a>
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    {% for project in projects.pages | slice(end=2) %}
-    {{ project_card::card(
-      permalink=project.permalink,
-      title=project.title,
-      description=project.description | default(value=""),
-      repo=project.extra.repo | default(value=""),
-      url=project.extra.url | default(value="")
-    ) }}
-    {% endfor %}
-  </div>
-</section>
+{% set projects = load_data(path="data/projects.toml") %}
+{% if projects.project %}
+<hr>
+<h2>Projects</h2>
+<div class="projects">
+  {% for project in projects.project | slice(end=3) %}
+  {{ project_card::card(project=project) }}
+  {% endfor %}
+</div>
+<p class="more"><a href="{{ get_url(path='/projects') | safe }}">all projects</a></p>
 {% endif %}
 
 {% endblock content %}
