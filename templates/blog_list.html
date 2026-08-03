@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Blog — {{ config.title }}{% endblock title %}
+{% block description %}Writing on things I'm building, learning, and thinking about.{% endblock description %}
+
+{% block content %}
+<header class="mb-10">
+  <h1 class="text-4xl font-bold tracking-tight mb-2">Blog</h1>
+  <p class="text-zinc-500 dark:text-zinc-400 m-0">Writing on things I'm building, learning, and thinking about.</p>
+</header>
+
+{# paginate_by is set, so posts arrive via paginator.pages not section.pages #}
+{% if paginator and paginator.pages %}
+<ul class="m-0 p-0 list-none">
+  {% for post in paginator.pages %}
+  <li class="flex justify-between items-baseline gap-4 py-3 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0">
+    <a href="{{ post.permalink | safe }}"
+       class="text-sm text-zinc-900 dark:text-zinc-100 hover:text-orange-500 dark:hover:text-orange-400">
+      {{ post.title }}
+    </a>
+    <span class="text-xs text-zinc-500 dark:text-zinc-400 whitespace-nowrap tabular-nums shrink-0">
+      {{ post.date | date(format="%b %d, %Y") }}
+    </span>
+  </li>
+  {% endfor %}
+</ul>
+
+{% if paginator.number_pagers > 1 %}
+<nav class="flex items-center justify-center gap-4 mt-12 text-sm" aria-label="Blog pagination">
+  {% if paginator.previous %}
+  <a href="{{ paginator.previous | safe }}"
+     class="text-orange-500 dark:text-orange-400 border border-zinc-200 dark:border-zinc-800 px-4 py-1.5 rounded hover:border-orange-500 dark:hover:border-orange-400 hover:no-underline">
+    ← newer
+  </a>
+  {% endif %}
+  <span class="text-zinc-500 dark:text-zinc-400">
+    {{ paginator.current_index }} / {{ paginator.number_pagers }}
+  </span>
+  {% if paginator.next %}
+  <a href="{{ paginator.next | safe }}"
+     class="text-orange-500 dark:text-orange-400 border border-zinc-200 dark:border-zinc-800 px-4 py-1.5 rounded hover:border-orange-500 dark:hover:border-orange-400 hover:no-underline">
+    older →
+  </a>
+  {% endif %}
+</nav>
+{% endif %}
+
+{% else %}
+<p class="text-zinc-500 dark:text-zinc-400">No posts yet. Check back soon.</p>
+{% endif %}
+{% endblock content %}

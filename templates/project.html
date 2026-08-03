@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "macros/icons.html" as icons %}
+
+{% block title %}{{ page.title }} — {{ config.title }}{% endblock title %}
+{% block description %}
+  {%- if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif -%}
+{% endblock description %}
+
+{% block content %}
+<article>
+  <header class="mb-10">
+    <h1 class="text-4xl font-bold tracking-tight mb-2">{{ page.title }}</h1>
+
+    {% if page.description %}
+    <p class="text-zinc-500 dark:text-zinc-400 m-0">{{ page.description }}</p>
+    {% endif %}
+
+    {% if page.extra.repo %}
+    <div data-github-repo="{{ page.extra.repo | safe }}">
+      <div class="gh-lang-bar mt-4 md:max-w-[75%]"></div>
+      <div class="flex gap-3 mt-5">
+        {% if page.extra.url %}{{ icons::live_site_link(url=page.extra.url) }}{% endif %}
+        <a href="{{ page.extra.repo | safe }}" rel="noopener noreferrer" hidden data-star-btn
+           class="inline-flex items-center gap-1.5 text-sm
+                  text-zinc-500 dark:text-zinc-400
+                  border border-zinc-200 dark:border-zinc-700
+                  px-3 py-1.5 rounded
+                  hover:text-zinc-900 dark:hover:text-zinc-100
+                  hover:border-zinc-400 dark:hover:border-zinc-500
+                  no-underline">
+          {{ icons::star(size="13") }}
+          <span>Star</span>
+          <span class="gh-star-count gh-star-badge"></span>
+        </a>
+      </div>
+    </div>
+    {% elif page.extra.url %}
+    <div class="mt-5">{{ icons::live_site_link(url=page.extra.url) }}</div>
+    {% endif %}
+  </header>
+
+  {% if page.content %}
+  <div class="prose">
+    {{ page.content | safe }}
+  </div>
+  {% endif %}
+</article>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}404 — {{ config.title }}{% endblock title %}
+{% block description %}Page not found{% endblock description %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center text-center py-20">
+  <p class="text-8xl font-bold text-zinc-200 dark:text-zinc-800 select-none leading-none mb-8">404</p>
+  <h1 class="text-2xl font-bold tracking-tight mb-3">Page not found</h1>
+  <p class="text-zinc-500 dark:text-zinc-400 mb-8 max-w-sm">
+    That page doesn't exist or has been moved.
+  </p>
+  <a href="{{ get_url(path='/') | safe }}"
+     class="text-sm text-orange-500 dark:text-orange-400">
+    Go home
+  </a>
+</div>
+{% endblock content %}

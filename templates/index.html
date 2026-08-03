@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% import "macros/icons.html" as icons %}
+{% import "macros/project_card.html" as project_card %}
+
+{% block title %}{{ config.title }} — {{ config.extra.tagline }}{% endblock title %}
+
+{% block content %}
+
+{# ── Hero ─────────────────────────────────────────────────────────────────── #}
+<section class="mb-12">
+  <h1 class="text-4xl font-bold tracking-tight mb-2">Hey, I'm Kieran.</h1>
+  <p class="text-lg text-zinc-500 dark:text-zinc-400 mb-7">{{ config.extra.tagline }}</p>
+  <p class="text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed mb-4">
+    I'm a developer based in Glasgow, working in FCA-regulated financial services.
+    Most of my professional work is Django and Python.
+  </p>
+  
+  <p class="mt-5 text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
+    Right now I'm learning Mandarin and may be addicted to Diet Coke. 
+  </p>
+
+</section>
+
+{# ── Recent writing ───────────────────────────────────────────────────────── #}
+{% set blog = get_section(path="blog/_index.md") %}
+{% if blog.pages %}
+<section class="mt-14">
+  <div class="flex items-center justify-between mb-5 pb-2.5 border-b border-zinc-200 dark:border-zinc-800">
+    <span class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">recent writing</span>
+    <a href="{{ get_url(path='/blog') | safe }}"
+       class="text-sm text-orange-500 dark:text-orange-400 inline-flex items-center gap-1 hover:underline">
+      all posts {{ icons::arrow_right() }}
+    </a>
+  </div>
+  <ul class="m-0 p-0 list-none">
+    {% for post in blog.pages | slice(end=4) %}
+    <li class="flex justify-between items-baseline gap-4 py-3 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0">
+      <a href="{{ post.permalink | safe }}"
+         class="text-sm text-zinc-900 dark:text-zinc-100 hover:text-orange-500 dark:hover:text-orange-400">
+        {{ post.title }}
+      </a>
+      <span class="text-xs text-zinc-500 dark:text-zinc-400 whitespace-nowrap tabular-nums shrink-0">
+        {{ post.date | date(format="%b %d, %Y") }}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{# ── Selected projects ────────────────────────────────────────────────────── #}
+{% set projects = get_section(path="projects/_index.md") %}
+{% if projects.pages %}
+<section class="mt-14">
+  <div class="flex items-center justify-between mb-5 pb-2.5 border-b border-zinc-200 dark:border-zinc-800">
+    <span class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">selected projects</span>
+    <a href="{{ get_url(path='/projects') | safe }}"
+       class="text-sm text-orange-500 dark:text-orange-400 inline-flex items-center gap-1 hover:underline">
+      all projects {{ icons::arrow_right() }}
+    </a>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {% for project in projects.pages | slice(end=2) %}
+    {{ project_card::card(
+      permalink=project.permalink,
+      title=project.title,
+      description=project.description | default(value=""),
+      repo=project.extra.repo | default(value=""),
+      url=project.extra.url | default(value="")
+    ) }}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock content %}

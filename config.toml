@@ -1,0 +1,17 @@
+base_url = "https://kiero.dev"
+title = "Kiero"
+description = "Portfolio and blog by Kiero"
+default_language = "en"
+compile_sass = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+[markdown]
+render_emoji = false
+external_links_target_blank = true
+external_links_no_follow = true
+highlighting = { highlight_code = true, theme = "kanagawa-dragon" }
+
+[extra]
+tagline = "Overthinking everything"
+author = "Kiero"

@@ -1,0 +1,30 @@
+kiero.dev {
+  root * /srv
+
+  @static {
+    file
+    path *.css *.js *.ico *.gif *.jpg *.jpeg *.png *.svg *.webp *.woff *.woff2 *.ttf
+  }
+  handle @static {
+    header Cache-Control "max-age=31536000, immutable"
+    file_server {
+      precompressed zstd br gzip
+    }
+  }
+
+  file_server {
+    precompressed zstd br gzip
+  }
+
+  handle_errors {
+    @404 {
+      expression {http.error.status_code} == 404
+    }
+    rewrite @404 /404.html
+    file_server
+  }
+}
+
+analytics.kiero.dev {
+  reverse_proxy umami:3000
+}
