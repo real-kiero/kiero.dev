@@ -23,6 +23,7 @@ jobs:
             --config .lychee.toml
             --verbose
             --no-progress
+            --root-dir .
             ./content/**/*.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

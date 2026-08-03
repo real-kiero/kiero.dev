@@ -1,6 +1,10 @@
 # Zola build output
 public/
 
+# Node
+node_modules/
+package-lock.json
+
 # Tailwind generated output
 static/css/main.css
 

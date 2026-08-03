@@ -3,18 +3,19 @@
 # ── Stage 1: build CSS ────────────────────────────────────────────────────────
 FROM node:22-alpine AS css
 WORKDIR /build
-RUN npm install -g @tailwindcss/cli
+COPY package.json .
+RUN npm install
 COPY input.css .
 COPY templates ./templates
 COPY static ./static
-RUN tailwindcss -i input.css -o static/css/main.css --minify
+RUN mkdir -p static/css && npx tailwindcss -i input.css -o static/css/main.css --minify
 
 # ── Stage 2: build site ───────────────────────────────────────────────────────
-FROM ghcr.io/getzola/zola:v0.20.0 AS zola
+FROM ghcr.io/getzola/zola:v0.22.1 AS zola
 WORKDIR /site
 COPY . .
 COPY --from=css /build/static/css/main.css static/css/main.css
-RUN zola build
+RUN ["zola", "build"]
 
 # ── Stage 3: pre-compress ────────────────────────────────────────────────────
 FROM alpine:3.19 AS compressor
