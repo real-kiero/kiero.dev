@@ -37,6 +37,7 @@
 :root {
   --bg: #ffffff;
   --copy: #171717;
+  --copy-soft: #4a5565;
   --head: #000000;
   --nav: #6b7280;
   --nav-hover: #000000;
@@ -54,6 +55,7 @@
   :root {
     --bg: #1a1a1a;
     --copy: #eaeaea;
+    --copy-soft: #cbcbcb;
     --head: #f2f2f2;
     --nav: #afafaf;
     --nav-hover: #f2f2f2;
@@ -287,15 +289,36 @@ a.meta:hover {
 .projects {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
 .projects p {
   margin: 0;
 }
 
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.project-status {
+  color: var(--nav);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.project-status::before {
+  content: "·";
+  margin-right: 0.45em;
+  letter-spacing: normal;
+}
+
+.project-blurb {
+  color: var(--copy-soft);
+}
+
 .project-meta {
-  margin-top: 1px;
   color: var(--nav);
   font-size: 13px;
 }

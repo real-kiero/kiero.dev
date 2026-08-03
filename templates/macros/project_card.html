@@ -1,8 +1,11 @@
 {% macro card(project) %}
-<div>
-  <p><a href="{{ project.repo | safe }}" rel="noopener noreferrer">{{ project.name }}</a>{% if project.blurb %} - {{ project.blurb }}{% endif %}</p>
-  {% if project.stack or project.status %}
-  <p class="project-meta">{{ project.stack | join(sep=" · ") }}{% if project.stack and project.status %} · {% endif %}{{ project.status | default(value="") }}</p>
+<div class="project">
+  <p class="project-head"><a href="{{ project.repo | safe }}" rel="noopener noreferrer">{{ project.name }}</a>{% if project.status %} <span class="project-status">{{ project.status }}</span>{% endif %}</p>
+  {% if project.blurb %}
+  <p class="project-blurb">{{ project.blurb }}</p>
+  {% endif %}
+  {% if project.stack %}
+  <p class="project-meta">{{ project.stack | join(sep=" · ") }}</p>
   {% endif %}
 </div>
 {% endmacro %}

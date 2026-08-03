@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "macros/project_card.html" as project_card %}
 
-{% block title %}{{ config.title }} // {{ config.extra.tagline }}{% endblock title %}
+{% block title %}{{ config.title }}{% endblock title %}
 
 {% block content %}
 
@@ -24,14 +24,9 @@
 </nav>
 </div>
 
-<p>
-  I'm a developer based in Glasgow, working in FCA-regulated financial services.
-  Most of my professional work is Django and Python.
-</p>
+<p> I'm a software developer based in Glasgow, working on FCA-regulated financial systems.</p> 
 
-<p>
-  Right now I'm learning Mandarin and may be addicted to Diet Coke.
-</p>
+<p>Most of my professional work focuses on backend application development, data modelling, workflow automation, and document generation in Python and Django.</p>
 
 {% set blog = get_section(path="blog/_index.md") %}
 {% if blog.pages %}

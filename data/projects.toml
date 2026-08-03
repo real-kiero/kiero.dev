@@ -3,14 +3,14 @@
 
 [[project]]
 name = "kiero.dev"
-status = "live"
-blurb = "This site. Static, self-hosted, privacy-respecting."
-stack = ["Zola", "Docker", "Caddy"]
+status = "LIVE"
+blurb = "This site. My portfolio, designed as an exercise in modern systems architecture. Built around a lightweight stack with containerised Zola deployment, self-hosted analytics, images served from custom CND (CloudFlare R2) , served via an automated delivery pipeline focused on performance and simplicity. Running on a DEV1-S Scaleway instance choosen for it's low carbon footprint."
+stack = ["Zola", "Docker", "Caddy", "Scaleway", "CI/CD"]
 repo = "https://github.com/real-kiero/kiero.dev"
 
 [[project]]
 name = "Startpage"
-status = "archived"
-blurb = "A custom browser startpage, built to replace the default new-tab page."
+status = "ARCHIVED"
+blurb = "A custom browser startpage, built to replace the default new tab. A functional first project that's had some forks and community traction and a sentimental milestone."
 stack = ["HTML", "CSS"]
 repo = "https://github.com/real-kiero/startpage"
