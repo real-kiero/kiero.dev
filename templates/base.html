@@ -10,7 +10,7 @@
   {# Umami Analytics #}
   <script defer src="https://analytics.kiero.dev/script.js" data-website-id="ea2175f9-e20a-45ae-858f-35d291887577"></script>
 
-  <link rel="stylesheet" href="{{ get_url(path='css/main.css') | safe }}">
+  <link rel="stylesheet" href="{{ get_url(path='css/main.css', cachebust=true) | safe }}">
   <link rel="alternate" type="application/atom+xml" title="{{ config.title }} - Feed" href="{{ get_url(path='atom.xml') | safe }}">
 
   {% block head %}{% endblock head %}
@@ -23,7 +23,7 @@
 
   <footer>© {{ now() | date(format="%Y") }} {{ config.author }}</footer>
 
-  <script defer src="{{ get_url(path='js/copy-code.js') | safe }}"></script>
+  <script defer src="{{ get_url(path='js/copy-code.js', cachebust=true) | safe }}"></script>
   {% block scripts %}{% endblock scripts %}
 </body>
 </html>
