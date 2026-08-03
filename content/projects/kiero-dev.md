@@ -26,7 +26,7 @@ The architecture was designed upfront rather than assembled on the fly. Everythi
 
 Most static site generators come bundled with a Node or Ruby dependency tree, slow rebuild times, or a framework you end up fighting against. [Hugo](https://gohugo.io/) is fast, but its template language is notoriously opaque, and the theme ecosystem tends to push you towards importing someone else's opinions about your markup. Zola is a single Rust binary, with no runtime, sub-second rebuilds, and a [Tera](https://keats.github.io/tera/) templating engine that handles everything a blog needs without pulling in a plugin ecosystem. Tera's syntax is close enough to Django's that picking it up was straightforward, which made it an easy choice.
 
-The templates were generated with [Claude](https://claude.ai/)'s assistance. I'd already built Zola templates by hand on a previous project, and I had no interest in doing that again for what was primarily a solutions design exercise. I reviewed all of the output, though some inconsistencies crept through, mostly a handful of raw CSS overrides where Tailwind classes should have been used instead, likely because Claude drew on Zola's conventional SCSS patterns rather than the Tailwind-first approach used here.
+The templates were generated with Claude's assistance. I'd already built Zola templates by hand on a previous project, and I had no interest in doing that again for what was primarily a solutions design exercise. I reviewed all of the output, though some inconsistencies crept through, mostly a handful of raw CSS overrides where Tailwind classes should have been used instead, likely because Claude drew on Zola's conventional SCSS patterns rather than the Tailwind-first approach used here.
 
 #### Tailwind CSS
 
