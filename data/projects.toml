@@ -4,7 +4,7 @@
 [[project]]
 name = "kiero.dev"
 status = "LIVE"
-blurb = "This site. My portfolio, designed as an exercise in modern systems architecture. Built around a lightweight stack with containerised Zola deployment, self-hosted analytics, images served from custom CND (CloudFlare R2) , served via an automated delivery pipeline focused on performance and simplicity. Running on a DEV1-S Scaleway instance choosen for it's low carbon footprint."
+blurb = "This site. My portfolio, designed as an exercise in modern systems architecture. Built around a lightweight stack with containerised Zola deployment, self-hosted analytics, images delivered from a custom CDN (CloudFlare R2) , served via an automated delivery pipeline for performance and simplicity. Running on a DEV1-S Scaleway instance choosen for it's low carbon footprint."
 stack = ["Zola", "Docker", "Caddy", "Scaleway", "CI/CD"]
 repo = "https://github.com/real-kiero/kiero.dev"
 
