@@ -35,7 +35,7 @@
 <div class="entries entries-home">
   {% for post in blog.pages | slice(end=6) %}
   <a class="entry" href="{{ post.permalink | safe }}">
-    <span><span class="entry-title">{{ post.title }}</span>{% if post.reading_time %} <span class="entry-read">{{ post.reading_time }} min</span>{% endif %}</span>
+    <span><span class="entry-title">{{ post.title }}</span> {% if post.reading_time %} <span class="entry-read"> - {{ post.reading_time }} min read</span>{% endif %}</span>
     <span class="entry-date">{{ post.date | date(format="%B %d, %Y") }}</span>
   </a>
   {% endfor %}
