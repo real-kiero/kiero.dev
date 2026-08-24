@@ -28,22 +28,25 @@ through [NeetCode](https://neetcode.io/).
 The goal is tighten fundamentals and maintain my reasoning skills. Being able to programmatically think and problem solve is a skill I would like to 
 sharpen and develop. 
 
-As a personal note I struggled immensely with the TwoSum challenge. This is marked as an `Easy` on [Leetcode](https://leetcode.com/). Easy challenges are 
-something I want to be able to breeze though. Whilst I understand algorithms are not indicative of  developer skills, the embarrassment I felt over the problem as 
+As a personal note, I struggled immensely with the TwoSum challenge. This is marked as an `Easy` on [Leetcode](https://leetcode.com/). Easy challenges are 
+something I want to be able to breeze though. Whilst I understand algorithms are not indicative of a developer's skills, the embarrassment I felt over the problem as 
 someone claiming to be mid level was eye-opening. 
 
 #### Mandarin Chinese 
-It's now been 5+ years married to my wife, with a beginner grasp of the language. Whilst my pronunciation is generally good my range and vocabulary
+It's now been 5+ years married to my wife, with a beginner grasp of the language. Whilst my pronunciation is generally good, my range and vocabulary
 is "survival" at best. I need to hold myself to a higher standard and apply myself. I've set myself the goal of being HSK 5 competent in communication alone. It's not an
-unreasonable goal. For reference HSK 5 would reflect "Accurate and appropriate communication in work and academic situations". HelloChinese is regarded as the best
-"gamified" learning platform for beginner Chinese with proper emphasis on tones and pronunciation.
+unreasonable goal. 
 
-I figure this, along with properly reviewed Anki decks for spaced repetition, should give me a leg up for meeting this goal. 
+For reference HSK 5 would reflect "Accurate and appropriate communication in work and academic situations". HelloChinese is regarded as one of the best
+"gamified" learning platforms for beginner Chinese with proper emphasis on tones and pronunciation.
+
+I figure this, along with a properly reviewed Anki deck for spaced repetition, should give me a leg up for meeting this goal. 
 
 #### Schedule
-I've had AI assist with the creation of an ICS file with a flexible schedule. I've had to account for the fact that my daughter's bedtime is inconsistent but
-leveraging the technology around me my schedule starter is exactly as below with room for refinement as I start to fall into a routine. AI is the perfect outsource for
-these types of tasks and I'm going to potentially write myself up a series of rules to follow for AI usage.
+I've had AI assist with the creation of an ICS file with a flexible schedule. To account for the fact that my daughter's bedtime is inconsistent, blocks are currently
+quite generous. My schedule starter is exactly as below with room for refinement as I start to fall into a routine. 
+
+AI is the perfect outsource for these types of tasks and I'm going to potentially write myself up a series of rules to follow for AI usage.
 
 | **Event**                             | **Start** | **End** | **When** |
 |---------------------------------------|-----------|---------|----------|
