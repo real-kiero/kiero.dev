@@ -302,6 +302,31 @@ a.meta:hover {
   gap: 2px;
 }
 
+.project-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.project-writeup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+  color: var(--nav);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.project-writeup svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
 .project-status {
   color: var(--nav);
   font-size: 12px;
@@ -433,6 +458,12 @@ footer {
 
 .prose figure {
   margin: 2rem 0;
+}
+
+.prose figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .prose figure.breakout {

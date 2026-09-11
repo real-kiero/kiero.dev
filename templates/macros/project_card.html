@@ -1,11 +1,26 @@
 {% macro card(project) %}
 <div class="project">
-  <p class="project-head"><a href="{{ project.repo | safe }}" rel="noopener noreferrer">{{ project.name }}</a>{% if project.status %} <span class="project-status">{{ project.status }}</span>{% endif %}</p>
+  <p><a href="{{ project.repo | safe }}" rel="noopener noreferrer">{{ project.name }}</a>{% if project.status %} <span class="project-status">{{ project.status }}</span>{% endif %}</p>
   {% if project.blurb %}
   <p class="project-blurb">{{ project.blurb }}</p>
   {% endif %}
-  {% if project.stack %}
-  <p class="project-meta">{{ project.stack | join(sep=" · ") }}</p>
+  {% if project.stack or project.writeup %}
+  <div class="project-foot">
+    {% if project.stack %}
+    <p class="project-meta">{{ project.stack | join(sep=" · ") }}</p>
+    {% endif %}
+    {% if project.writeup %}
+    <a class="project-writeup" href="{{ project.writeup | safe }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 2.5h8.2a1 1 0 0 1 .7.3l4.3 4.3a1 1 0 0 1 .3.7V20.5a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 4.5 20.5v-16A1.5 1.5 0 0 1 6 2.5Z"></path>
+        <path d="M14 2.5V7a1 1 0 0 0 1 1h4.5"></path>
+        <path d="M8 13h8"></path>
+        <path d="M8 16.5h5"></path>
+      </svg>
+      CASE STUDY
+    </a>
+    {% endif %}
+  </div>
   {% endif %}
 </div>
 {% endmacro %}

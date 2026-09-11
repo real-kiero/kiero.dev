@@ -1,0 +1,7 @@
+{%- set svg = load_data(path=src, format="plain") -%}
+<figure{% if breakout | default(value=false) %} class="breakout"{% endif %}>
+  {{ svg | safe }}
+  {% if caption is defined %}
+  <figcaption>{{ caption }}</figcaption>
+  {% endif %}
+</figure>
