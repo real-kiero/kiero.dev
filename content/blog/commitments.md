@@ -1,6 +1,6 @@
 +++
 title = "Commitments before my 30th"
-description = "Milestones I want to reach before my 30th birthday deadline"
+description = "Milestones I want to reach before my 30th birthday deadline."
 date = 2026-08-23
 +++
 
