@@ -54,17 +54,17 @@ Choosing a provider was my biggest consideration. AWS was the first provider I c
 
 A DEV1-S instance was chosen to comfortably run Caddy, Umami, and PostgreSQL simultaneously, with a dedicated CPU and enough RAM that none of the three are competing for headroom.
 
-#### [Caddy](https://caddyserver.com/)
+#### Caddy
 
 My previous site ran on nginx, configured manually with [certbot](https://certbot.eff.org/) handling HTTPS. It worked, and I have direct experience running it, but it increasingly feels dated. HTTPS is a baseline expectation at this point, and nginx still doesn't natively handle TLS for you out of the box. Certbot was serviceable, but it was an additional maintenance concern for something that should just be automatic.
 
-Caddy handles TLS via [Let's Encrypt](https://letsencrypt.org/) with no extra tooling or renewal management, and that was the main reason for switching. Its configuration is also readable without consulting a manual, the [Caddyfile](https://github.com/real-kiero/kiero.dev/blob/main/Caddyfile) for this site is only 30 lines. It serves pre-compressed static files, sets year-long cache headers for assets, and proxies `analytics.kiero.dev` to Umami. I have less operational history with Caddy than nginx, but nothing about running it has given me reason to reconsider.
+[Caddy](https://caddyserver.com/) handles TLS via [Let's Encrypt](https://letsencrypt.org/) with no extra tooling or renewal management, and that was the main reason for switching. Its configuration is also readable without consulting a manual, the [Caddyfile](https://github.com/real-kiero/kiero.dev/blob/main/Caddyfile) for this site is only 30 lines. It serves pre-compressed static files, sets year-long cache headers for assets, and proxies `analytics.kiero.dev` to Umami. I have less operational history with Caddy than nginx, but nothing about running it has given me reason to reconsider.
 
 #### Cloudflare R2
 
 Serving images directly from the VPS means every request hits the origin, adding latency for visitors further from the server and putting unnecessary load on a machine that is otherwise only serving pre-compressed static files. Cloudflare's R2 moves image storage off the VPS entirely and onto Cloudflare's edge network, so images are delivered from a location close to the visitor with no egress fees. Cloudflare's image optimisation pipeline handles format conversion at the CDN layer, serving WebP where the browser supports it and falling back to JPEG otherwise, with no build-time processing or extra tooling on the server required.
 
-The fallback is handled by a custom Tera ["shortcode"](https://docs.rs/tera-shortcodes/latest/tera_shortcodes/struct.Shortcodes.html).
+The fallback is handled by a custom Tera "[shortcode](https://docs.rs/tera-shortcodes/latest/tera_shortcodes/struct.Shortcodes.html)".
 
 ## Analytics
 
