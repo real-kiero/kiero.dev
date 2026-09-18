@@ -15,5 +15,12 @@ external_links_no_follow = true
 highlighting = { highlight_code = true, theme = "kanagawa-dragon" }
 
 [extra]
-tagline = "Overthinking everything"
 github = "https://github.com/real-kiero"
+
+[[extra.nav]]
+name = "Blog"
+path = "/blog"
+
+[[extra.nav]]
+name = "Projects"
+path = "/projects"

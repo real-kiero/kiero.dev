@@ -17,6 +17,17 @@
 </head>
 <body>
 
+  <nav class="site-nav" aria-label="Primary">
+    <a href="{{ get_url(path='/') | safe }}">{{ config.title }}</a>
+    {% if config.extra.nav %}
+    <span class="site-nav-links">
+      {% for item in config.extra.nav %}
+      <a href="{{ get_url(path=item.path) | safe }}">{{ item.name }}</a>
+      {% endfor %}
+    </span>
+    {% endif %}
+  </nav>
+
   <main id="main">
     {% block content %}{% endblock content %}
   </main>

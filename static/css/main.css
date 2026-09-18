@@ -209,6 +209,36 @@ a.meta:hover {
   color: var(--nav-hover);
 }
 
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.site-nav > a {
+  color: var(--head);
+  text-decoration: none;
+}
+
+.site-nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.site-nav-links a {
+  color: var(--nav);
+  text-decoration: none;
+}
+
+.site-nav-links a:hover {
+  color: var(--nav-hover);
+}
+
 .hero {
   display: flex;
   align-items: center;
